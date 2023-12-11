@@ -15,7 +15,7 @@ app.use(express.json());
 app.use("/url", urlRoute);
 
 //Displaying Newly Created URL from Short ID
-app.get('/:shortID', async(req, res) => {
+app.get('/:shortID', async (req, res) => {
     const shortId = req.params.shortID;
     const data = await URL.findOneAndUpdate(
         {
@@ -23,9 +23,9 @@ app.get('/:shortID', async(req, res) => {
         },
         {
             $push: {
-                visitHistory : {
-                timeStamp : Date.now(),
-                }, 
+                visitHistory: {
+                    timeStamp: Date.now(),
+                },
             },
         }
     );
@@ -34,4 +34,6 @@ app.get('/:shortID', async(req, res) => {
 })
 
 
-app.listen(PORT, () => { console.log("Server started") });
+app.listen(PORT, () => {
+    console.log("Server started")
+});
